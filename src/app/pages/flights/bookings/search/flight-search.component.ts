@@ -23,6 +23,7 @@ export class FlightSearchComponent implements OnInit {
     this.searchFlights('', '');
   }
 
+  // TODO Move this logic to a service
   searchFlights(f: string, t: string) {
     this.fr.find(f, t)
       .subscribe(

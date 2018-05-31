@@ -11,13 +11,16 @@ import { FlightEditComponent } from './edit/flight-edit.component';
 import { FlightsComponent } from './flights.component';
 import { Routes } from '@angular/router';
 import { Error404Component } from '../error404/error404.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
-    FlightsRoutingModule
+    FlightsRoutingModule,
+    SharedModule
   ],
   declarations: [
     BookingsComponent,

@@ -1,12 +1,13 @@
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/share';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
-import {environment} from '../../../../environments/environment';
-import {Flight} from '../models/flight';
+import { environment } from '../../../../environments/environment';
+import { Flight } from '../models/flight';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,13 @@ export class FlightResource {
   }
 
   findById(id: string): Observable<Flight> {
-    const reqObj = {params: null}
+    const reqObj = { params: null }
     const params = new HttpParams().set('id', id)
-    // Wont work!! => params.set('id', id)
     reqObj.params = params
 
     return this.http
       .get<Flight>(this.baseUrl, reqObj)
       .catch(error => Observable.throw(error.json()))
-
   }
 
 
@@ -43,20 +42,23 @@ export class FlightResource {
     return this
       .http
       .get<Flight[]>(this.baseUrl, reqObj)
-      .catch(e => {
-        console.log('error', e)
-        let errMsg
-        if (e instanceof HttpErrorResponse) {
-          switch (e.status) {
-            case 0:
-              errMsg = 'You are offline'
-              break
-            default:
-              errMsg = 'Client Error or Network Error'
+      .pipe(
+        // map(mapServerToClientObj),
+        catchError(e => {
+          console.log('error', e)
+          let errMsg
+          if (e instanceof HttpErrorResponse) {
+            switch (e.status) {
+              case 0:
+                errMsg = 'You are offline'
+                break
+              default:
+                errMsg = 'Client Error or Network Error'
+            }
+            return Observable.throw(errMsg)
           }
-          return Observable.throw(errMsg)
-        }
-      })
+        })
+      )
   }
 
   post(flight: Flight): Observable<Flight> {
@@ -83,7 +85,7 @@ export class FlightResource {
           }
 
         }
-        return Observable.throw({message: errMsg})
+        return Observable.throw({ message: errMsg })
       })
   }
 

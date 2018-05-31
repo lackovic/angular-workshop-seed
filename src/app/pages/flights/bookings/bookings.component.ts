@@ -9,6 +9,8 @@ export class BookingsComponent {
   selectedFlights: Flight[] = [];
   searchedFlights: Flight[] = [];
 
+  constructor() { }
+
   flightSelectionChange(flight: Flight) {
     const index = this.selectedFlights.indexOf(flight);
     if (index === -1) {
@@ -16,6 +18,5 @@ export class BookingsComponent {
     } else {
       delete this.selectedFlights[index];
     }
-
   }
 }
