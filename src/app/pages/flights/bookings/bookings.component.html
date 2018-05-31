@@ -1,0 +1,30 @@
+<h1>
+  Bookings
+</h1>
+
+<section class="row">
+  <div class="col-sm-12">
+    <section class="row">
+
+      <div class="col-md-12">
+
+        <app-basket [hidden]="selectedFlights.length === 0" [selectedFlights]="selectedFlights"></app-basket>
+
+      </div>
+
+      <div class="col-md-12">
+
+        <app-flight-search (searchedFlightsChange)="searchedFlights = $event"></app-flight-search>
+
+        <app-upcoming-flights
+          [hidden]="searchedFlights.length === 0"
+          [searchedFlights]="searchedFlights"
+          [selectedFlights]="selectedFlights"
+          (selectedFlightChange)="flightSelectionChange($event)"></app-upcoming-flights>
+
+      </div>
+    </section>
+  </div>
+</section>
+
+

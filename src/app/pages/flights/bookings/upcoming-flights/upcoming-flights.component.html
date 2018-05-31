@@ -1,0 +1,21 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <h3 class="card-title">Upcoming Flights</h3>
+
+    <div class="dropdown card-title-btn-container">
+      <button class="btn btn-sm btn-subtle" type="button">
+        <em class="fa fa-list-ul"></em> Add All
+      </button>
+      <button class="btn btn-sm btn-subtle" type="button">
+        <em class="fa fa-list-ul"></em> Remove All
+      </button>
+
+      <!-- <button class="btn btn-sm btn-subtle dropdown-toggle" type="button">
+        <em class="fa fa-cog"></em>
+      </button> -->
+    </div>
+    <div class="row">
+      <app-flight-card *ngFor="let flight of searchedFlights" [flight]="flight" (selectedChange)="selectFlight($event)"></app-flight-card>
+    </div>
+  </div>
+</div>

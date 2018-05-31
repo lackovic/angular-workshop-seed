@@ -1,0 +1,10 @@
+<div class="col-sm border rounded mx-auto" [ngClass]="!selected ? 'border-success':'border-danger'">
+  <h2>{{flight.from}} >>> {{flight.to}}</h2>
+  <p>Date: {{flight.date | date:'dd.MM.yyyy'}}</p>
+  <button class="btn rounded btn-md" (click)="toggleSelection()" [ngClass]="!selected ? 'bg-success':'bg-danger'">
+    {{!selected ? 'Add':'Remove'}}
+  </button>
+  <button class="btn rounded btn-md" [routerLink]="['../edit', flight.id]">
+    Edit
+  </button>
+</div>

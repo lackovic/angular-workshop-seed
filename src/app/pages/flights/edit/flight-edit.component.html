@@ -1,0 +1,24 @@
+<h1>Edit flight</h1>
+<form #f="ngForm" class="col-md-6" *ngIf="flight">
+  <div class="form-group">
+    <label for="id">Id</label>
+    <input type="text" id="id" name="id" [(ngModel)]="flight.id" class="form-control" placeholder="Enter id" required>
+    <small *ngIf="f?.controls?.id?.invalid" class="form-text text-danger">This field is required</small>
+  </div>
+  <div class="form-group">
+    <label for="from">From</label>
+    <input type="text" id="from" name="from" [(ngModel)]="flight.from" class="form-control" placeholder="Enter from" required>
+    <small *ngIf="f?.controls?.from?.invalid" class="form-text text-danger">This field is required</small>
+  </div>
+  <div class="form-group">
+    <label for="to">To</label>
+    <input type="text" id="to" name="to" [(ngModel)]="flight.to" class="form-control" placeholder="Enter to" required>
+    <small *ngIf="f?.controls?.to?.invalid" class="form-text text-danger">This field is required</small>
+  </div>
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input type="text" id="date" name="date" [(ngModel)]="flight.date" class="form-control" name="date" placeholder="Enter date"
+      required>
+    <small *ngIf="f?.controls?.date?.invalid" class="form-text text-danger">This field is required</small>
+  </div>
+</form>
