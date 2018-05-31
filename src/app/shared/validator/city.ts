@@ -14,5 +14,3 @@ export function city(control: AbstractControl): null | ValidationErrors {
   }
   return null;
 }
-
-// function

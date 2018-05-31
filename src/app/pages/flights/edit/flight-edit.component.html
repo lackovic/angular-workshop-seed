@@ -5,18 +5,22 @@
     <input type="text" id="id" formControlName="id" class="form-control" placeholder="Enter id">
     <small *ngIf="flightEditForm.get('id')?.invalid" class="form-text text-danger">This field is required</small>
   </div>
-  <div class="form-group">
-    <label for="from">From</label>
-    <input type="text" id="from" formControlName="from" class="form-control" placeholder="Enter from">
-    <small *ngIf="flightEditForm.get('from')?.hasError('required')" class="form-text text-danger">This field is required</small>
-    <small *ngIf="flightEditForm.get('from')?.hasError('city')" class="form-text text-danger">Invalid city</small>
-  </div>
-  <div class="form-group">
-    <label for="to">To</label>
-    <input type="text" id="to" formControlName="to" class="form-control" placeholder="Enter to">
-    <small *ngIf="flightEditForm.get('to')?.hasError('required')" class="form-text text-danger">This field is required</small>
-    <small *ngIf="flightEditForm.get('to')?.hasError('city')" class="form-text text-danger">Invalid city</small>
-  </div>
+  <!-- <section [formGroup]="flightEditForm.get('fromTo')"> -->
+    <div class="form-group">
+      <label for="from">From</label>
+      <input type="text" id="from" formControlName="from" class="form-control" placeholder="Enter from">
+      <small *ngIf="flightEditForm.get('from')?.hasError('required')" class="form-text text-danger">This field is required</small>
+      <small *ngIf="!flightEditForm.get('from')?.hasError('required') && flightEditForm.get('from')?.hasError('city')" class="form-text text-danger">Invalid city</small>
+      <small *ngIf="!flightEditForm.get('from')?.hasError('required') && flightEditForm.hasError('areDifferent')" class="form-text text-danger">The cities must be different</small>
+    </div>
+    <div class="form-group">
+      <label for="to">To</label>
+      <input type="text" id="to" formControlName="to" class="form-control" placeholder="Enter to">
+      <small *ngIf="flightEditForm.get('to')?.hasError('required')" class="form-text text-danger">This field is required</small>
+      <small *ngIf="!flightEditForm.get('to')?.hasError('required') && flightEditForm.get('to')?.hasError('city')" class="form-text text-danger">Invalid city</small>
+      <small *ngIf="!flightEditForm.get('to')?.hasError('required') && flightEditForm.hasError('areDifferent')" class="form-text text-danger">The cities must be different</small>
+    </div>
+  <!-- </section> -->
   <!-- <app-form-control-state [control]="flightEditForm.get('to')">
     To
   </app-form-control-state> -->
